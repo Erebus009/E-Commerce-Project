@@ -4,12 +4,12 @@
   background-color: rgb(255, 255, 255);
 }
 header .title{
-  font-size: 4em;
+  font-size: 2em;
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(0, 0, 0);
 }
 .line1 {
-  width: 200px;
+  width: 190px;
   height: 10px;
   border-bottom: 10px solid rgb(255, 0, 0);
   transform:
@@ -31,4 +31,36 @@ header .title{
   position: absolute;
 
   /* top: -20px; */
+}
+ul{
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+
+}
+li{
+  list-style-type: none;
+  color: black;
+
+}
+li a{
+  font-size: 18px;
+  line-height: 1;
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+
+
+
+
+.signup{
+  position: absolute;
+  right:50px;
+  transform: translateY(10%);
+  
+  
+  
+
 }

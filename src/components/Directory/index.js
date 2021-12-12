@@ -13,7 +13,7 @@ const Directory = (props) => {
             backgroundImage: `url(${Dirtbike})`,
           }}
         >
-          <a href="dirtbike">Shop DirtBikes</a>
+          <a href="dirtbikes">Shop DirtBikes</a>
         </div>
         <div
           className="item"
@@ -21,7 +21,7 @@ const Directory = (props) => {
             backgroundImage: `url(${OffRoad})`,
           }}
         >
-          <a href="offroad">Shop OffRoad</a>
+          <a href="offroads">Shop OffRoad</a>
         </div>
       </div>
     </div>
