@@ -4,7 +4,10 @@ import "./style.scss";
 const Header = (props) => {
   return (
     <header className="header container.fluid align-items-center d-flex">
-      <h1 className="display-3">Moto Sports</h1>
+      <div className="line1"></div>
+      <div className="line2"></div>
+      <h1 className="title">Moto Sports</h1>
+      
     </header>
   );
 };
