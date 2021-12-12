@@ -30,7 +30,7 @@
 a{
     position: absolute;
     z-index: 2;
-    
+    white-space: nowrap;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -46,6 +46,7 @@ a{
 }
 .item a {
     color: white;
+    
 }
 
 .item a:hover {
