@@ -1,66 +1,50 @@
 .header {
   height: 6.5rem;
-  box-shadow: 0 2px 4px 0 rgba($color: #000000, $alpha: 1);
+  box-shadow: 0 0px 5px 0 rgba($color: #000000, $alpha: 1);
   background-color: rgb(255, 255, 255);
+  max-width: 100%;
+  margin: auto;
 }
-header .title{
+header .title {
   font-size: 2em;
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(0, 0, 0);
+  white-space: nowrap;
 }
-.line1 {
-  width: 190px;
-  height: 10px;
-  border-bottom: 10px solid rgb(255, 0, 0);
-  transform:
-      translateY(-20px)
-      translateX(130px)
-      rotate(40deg); 
-  position: absolute;
 
-  /* top: -20px; */
-}
-.line2 {
-  width: 200px;
-  height: 10px;
-  border-bottom: 10px solid rgb(255, 0, 0);
-  transform:
-      translateY(-20px)
-      translateX(160px)
-      rotate(40deg); 
-  position: absolute;
-
-  /* top: -20px; */
-}
-ul{
+ul {
   list-style: none;
   margin: 0px;
   padding: 0px;
-
+ 
 }
-li{
+li {
   list-style-type: none;
   color: black;
+  display: inline-block;
+  margin-right: 1.7rem;
+  &:last-child {
+    margin-right: 0px;
+  }
 
 }
-li a{
-  font-size: 18px;
+li a {
+  font-size: 16px;
   line-height: 1;
+  margin-right: 10px;
+  float: right;
   color: black;
+  margin-top: 10px;
   text-decoration: none;
   text-transform: uppercase;
 }
 
-
-
-
-
-.signup{
-  position: absolute;
-  right:50px;
-  transform: translateY(10%);
+span {
+  font-size: 2.1rem;
+  float: right;
+  display: block;
+  margin-top: 10px;
+  text-transform: uppercase;
+  cursor: pointer;
   
-  
-  
-
 }

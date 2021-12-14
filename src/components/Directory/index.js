@@ -6,7 +6,7 @@ import OffRoad from "./../../assets/offroad.jpg";
 const Directory = (props) => {
   return (
     <div className="direct">
-      <div className="wrapper">
+      <div className="Homewrapper">
         <div
           className="item"
           style={{
