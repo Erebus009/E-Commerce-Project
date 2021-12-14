@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Footer from "../../components/Footer";
 import "./style.scss";
 
 class SignUp extends Component {
@@ -6,7 +7,9 @@ class SignUp extends Component {
     return (
     <div>
         <h1>Sign up Page</h1>
+        <Footer/>
     </div>
+   
     )
   }
 }
