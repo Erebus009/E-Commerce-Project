@@ -6,7 +6,7 @@ import Login from "./components/Login";
 import HomePageLayout from "./layouts/HomePageLayout";
 import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import { auth, handleUserProfile } from "./firebase/utils";
 
@@ -52,6 +52,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="main">
+          
           <Routes>
             <Route
               exact
@@ -72,12 +73,14 @@ class App extends Component {
               exact
               path="/login"
               element={
-                <HomePageLayout currentUser={currentUser}>
+                <HomePageLayout currentUser={currentUser}  >
                   <Login />
                 </HomePageLayout>
               }
             />
+           
           </Routes>
+          
         </div>
       </div>
     );

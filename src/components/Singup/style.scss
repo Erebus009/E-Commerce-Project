@@ -1,10 +1,9 @@
-.signIn{
+.signup{
     display: block;
     width: 100%;
     max-width: 40rem;
     border: 1px solid rgb(0, 0, 0);
     margin: 4rem auto;
-    
 }
 .wrapper {
     padding:  10px;
@@ -17,13 +16,10 @@
         display: block;
         width: 100%;
         text-align: center;
-        margin: 0 auto 3rem;
+        margin: 0 auto;
         padding: 0px;
-        
-    
     }
 }
-.socialIcons {
-    margin-top: 1rem;
-    padding: 6px;
+.formWrap {
+    margin: 3rem auto 0;
 }

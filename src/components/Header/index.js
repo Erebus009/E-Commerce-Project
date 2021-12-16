@@ -13,7 +13,7 @@ const Header = (props) => {
           <h1 className="title">Moto Sports</h1>
         </Link>
       </div>
-      <div className="signup container d-flex justify-content-end">
+      <div className="signUp container d-flex justify-content-end">
       {currentUser && (
        <ul className="signUp">
        <li>
