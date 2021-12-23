@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Home from "./pages/Home";
 import SignUp from "./pages/SignUp";
 import Login from "./components/Login";
+import Recover from "./pages/Recover"
 import HomePageLayout from "./layouts/HomePageLayout";
 import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -78,7 +79,9 @@ class App extends Component {
                 </HomePageLayout>
               }
             />
-           
+            <Route exact path= "/recover" element={<HomePageLayout currentUser={currentUser} >
+            <Recover />
+            </HomePageLayout>}/>
           </Routes>
           
         </div>
