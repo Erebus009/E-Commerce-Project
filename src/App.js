@@ -7,39 +7,37 @@ import Recover from "./pages/Recover"
 import HomePageLayout from "./layouts/HomePageLayout";
 import "./index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { auth, handleUserProfile } from "./firebase/utils";
-
+import { connect } from "react-redux";
+import {setCurrentUser} from "./redux/user/user.actions"
 const initialState = {
   currentUser: null,
 };
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { ...initialState };
-  }
+  
 
   authListner = null;
 
   componentDidMount() {
+
+    const  { setCurrentUser } = this.props
+
+
     this.authListner = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
         const userRef =  await handleUserProfile(userAuth);
         userRef.onSnapshot((snapshot) => {
-          this.setState({
-            currentUser: {
-              id: snapshot.id,
-              ...snapshot.data(),
-            },
+          this.props.setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data()
           });
         });
       }
 
-      this.setState({
-        ...initialState
-      });
+      this.props.setCurrentUser(userAuth)
     });
   }
 
@@ -48,7 +46,7 @@ class App extends Component {
   }
 
   render() {
-    const { currentUser } = this.state;
+    const { currentUser } = this.props;
 
     return (
       <div className="App">
@@ -58,14 +56,14 @@ class App extends Component {
             <Route
               exact
               path="/"
-              element={<Home currentUser={currentUser} />}
+              element={<Home />}
             />
 
             <Route
               exact
               path="/signup"
               element={
-                <HomePageLayout currentUser={currentUser}>
+                <HomePageLayout >
                   <SignUp />
                 </HomePageLayout>
               }
@@ -74,12 +72,12 @@ class App extends Component {
               exact
               path="/login"
               element={
-                <HomePageLayout currentUser={currentUser}  >
+                <HomePageLayout >
                   <Login />
                 </HomePageLayout>
               }
             />
-            <Route exact path= "/recover" element={<HomePageLayout currentUser={currentUser} >
+            <Route exact path= "/recover" element={<HomePageLayout  >
             <Recover />
             </HomePageLayout>}/>
           </Routes>
@@ -89,5 +87,11 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser
+})
+const mapDispatchToProps = dispacth => ({
+  setCurrentUser: user => dispacth(setCurrentUser(user))
+})
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
