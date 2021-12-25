@@ -1,67 +1,69 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
 import Button from "../Forms/Button";
-import { signInWithGoogle, auth } from "./../../firebase/utils";
+import { signInWithGoogle} from "./../../firebase/utils";
 import FormInput from "../Forms/FormInput";
 import Authwrapper from "../AuthWrapper";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signInUser } from "./../../redux/user/user.actions"
 
-const initialState = {
-  email: "",
-  password: "",
-};
 
-class SignIn extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ...initialState,
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
-  handleChange(e) {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value,
-    });
-  }
+const mapState = ({ user}) => ({
+  signInSuccess: user.signInSuccess
+})
 
-  handleSubmit = async (e) => {
-    e.preventDefault();
-    const { email, password } = this.state;
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      this.setState({
-        ...initialState,
-      });
-    } catch (err) {
-      console.log(err);
+
+
+const SignIn = props => {
+  const { signInSuccess } = useSelector(mapState)
+  const dispatch = useDispatch()
+  const [email, SetEmail] = useState('')
+  const [password, SetPassword] = useState('')
+
+  useEffect(() => {
+    if(signInSuccess){
+      resetForm()
+      window.location.assign("http://localhost:3000")
+
     }
-  };
+  }, [signInSuccess])
 
-  render() {
-    const { email, password } = this.state;
+  const resetForm = () => {
+    SetEmail('')
+    SetPassword('')
+  }
 
-    const configAuthWrapper = {
-      headline: "Login"
-    }
+  const handleSubmit = (e) => {
+    
+     e.preventDefault();
+    dispatch(signInUser({email,password}));
+    
+  }
+
+    
+  
+  const configAuthWrapper = {
+    header: "Login"
+  }
+  
 
     return (
       <Authwrapper {...configAuthWrapper}>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <FormInput
             type="email"
             name="email"
             value={email}
             placeholder="Email"
-            handleChange={this.handleChange}
+            handleChange={e => SetEmail(e.target.value)}
           />
           <FormInput
             type="password"
             name="password"
             value={password}
             placeholder="Password"
-            handleChange={this.handleChange}
+            handleChange={e => SetPassword(e.target.value)}
           />
           <Button type="submit">Log in</Button>
           <div className="socialIcons">
@@ -79,5 +81,5 @@ class SignIn extends Component {
       </Authwrapper>
     );
   }
-}
+
 export default SignIn;

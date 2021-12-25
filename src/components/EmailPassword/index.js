@@ -1,35 +1,22 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./style.scss";
 import Authwrapper from "../AuthWrapper";
 import FormInput from "../Forms/FormInput";
 import Button from "../Forms/Button";
 import { auth } from "./../../firebase/utils";
 
-const initialState = {
-  email: "",
-  errors: ""
-};
 
-class EmailPassword extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ...initialState,
-    };
 
-    this.handleChange = this.handleChange.bind(this);
-  }
+const EmailPassword = props =>  {
+  const [email, setEmail] = useState('')
+  const [errors, setErrors] = useState([])
 
-  handleChange(e) {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value,
-    });
-  }
-  handleSubmit = async (e) => {
+
+
+ const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { email } = this.state;
+     
       const config = {
         url: "http://localhost:3000/login",
       };
@@ -40,18 +27,20 @@ class EmailPassword extends Component {
           window.location.assign("http://localhost:3000/login");
         })
         .catch(() => {
-          const err = ["Email not found."];
-          this.setState({
-            errors: err,
-          });
+          const err = ["Email not found. Please try again"];
+          setErrors(
+            err
+          );
+          setTimeout(() => {
+            setErrors([])
+          }, 3000)
         });
     } catch (err) {
       console.log(err);
     }
   };
 
-  render() {
-    const { email, errors } = this.state;
+ 
 
     const configAuthWrapper = {
       headline: "Password Recovery",
@@ -59,8 +48,7 @@ class EmailPassword extends Component {
 
     return (
       <Authwrapper {...configAuthWrapper}>
-        <div className="formWrap">
-          {errors.length > 0 && (
+           {errors.length > 0 && (
             <ul>
               {errors.map((e,index) => {
                 return (
@@ -71,14 +59,16 @@ class EmailPassword extends Component {
               })}
             </ul>
           )}
+        <div className="formWrap">
+       
 
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <FormInput
               type="email"
               name="email"
               value={email}
               placeholder="Email"
-              onChange={this.handleChange}
+              handleChange={e => setEmail(e.target.value)}
             />
             <Button type="submit">Password Recovery</Button>
           </form>
@@ -86,6 +76,6 @@ class EmailPassword extends Component {
       </Authwrapper>
     );
   }
-}
+
 
 export default EmailPassword;

@@ -29,10 +29,8 @@ li {
 
 }
 li a {
-  font-size: 16px;
-  line-height: 1;
+  font-size: 2.2rem !important;
   margin-right: 10px;
-  float: right;
   color: black;
   margin-top: 10px;
   text-decoration: none;
@@ -40,10 +38,9 @@ li a {
 }
 
 span {
-  font-size: 2.1rem;
+  font-size: 2rem;
   float: right;
   display: block;
-  margin-top: 10px;
   text-transform: uppercase;
   cursor: pointer;
   
